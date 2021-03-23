@@ -37,13 +37,15 @@ namespace Project2D
 
         public static void SetPosition(Vector2 PlayerPos)
         {
-            PlayerPos.x = 0;
-            PlayerPos.y = 0;
+            
         }
 
         public static Vector2 GetPosition()
         {
-            return ;
+            Vector2 ObjectPos;
+            ObjectPos.x = 0;
+            ObjectPos.y = 0;
+            return ObjectPos;
         }
 
         public virtual void Update()

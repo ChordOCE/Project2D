@@ -22,18 +22,7 @@ static public class Renderer
 
 		return result;
 	}
-
-	//--------------------------------------------------------------
-	//--------------------------------------------------------------
-	public static RLVector2 ToRLVector2(this Vector2 vec)
-	{
-		RLVector2 result;
-		result.x = vec.x;
-		result.y = vec.y;
-
-		return result;
-	}
-
+	
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static Colour ToColor(this Colour colour)
@@ -43,7 +32,7 @@ static public class Renderer
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
-	public static Colour ToColor(this Colour color)
+	public static Colour ToColour(this Colour color)
 	{
 		Colour col = new Colour(0x12, 0x34, 0x56, 0x78);
 		col.SetRed(color.r);
@@ -59,35 +48,35 @@ static public class Renderer
 	public static Vector2 GetMousePosition()
 	{
 		RLVector2 pos = Raylib.Raylib.GetMousePosition();
-		return pos.ToVector2();
+		return pos.ToRLVector2();
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawLine(Vector2 startPos, Vector2 endPos, float thick, Colour colour)
 	{
-		DrawLineEx(startPos.ToRLVector2(), endPos.ToRLVector2(), thick, colour.ToRLColor());
+		DrawLineEx(startPos.ToVector2(), endPos.ToVector2(), thick, colour.ToColour());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawCircle(Vector2 center, float radius, Colour colour)
 	{
-		DrawCircleV(center.ToRLVector2(), radius, colour.ToRLColor());
+		DrawCircleV(center.ToVector2(), radius, colour.ToColour());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawRectangle(Vector2 position, Vector2 size, Colour colour)
 	{
-		DrawRectangleV(position.ToRLVector2(), size.ToRLVector2(), colour.ToRLColor());
+		DrawRectangleV(position.ToVector2(), size.ToVector2(), colour.ToColour());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawText(Font font, string text, Vector2 position, float fontSize, float spacing, Colour tint)
 	{
-		DrawTextEx(font, text, position.ToRLVector2(), fontSize, spacing, tint.ToRLColor());
+		DrawTextEx(font, text, position.ToVector2(), fontSize, spacing, tint.ToColour());
 	}
 
 	//--------------------------------------------------------------
@@ -115,7 +104,7 @@ static public class Renderer
 		source.height = texture.height;
 
 		//Origin to rotate around
-		RLVector2 origin = new RLVector2();
+		Vector2 origin = new Vector2();
 		origin.x = texture.width * 0.5f;
 		origin.y = texture.height * 0.5f;
 
@@ -131,9 +120,9 @@ static public class Renderer
 		float degrees = angle * 180.0f / (float)Math.PI;
 
 		//Convert our color class to a raylib colour
-		RLColor rlColor = new RLColor(color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
+		Colour Colour = new Colour(color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
 
 		//Draw texture
-		DrawTexturePro(texture, source, destination, origin, degrees, rlColor);
+		DrawTexturePro(texture, source, destination, origin, degrees, Colour);
 	}
 }
