@@ -19,11 +19,18 @@ namespace Project2D
         protected Texture2D texture;
         protected static List<GameObject> ChildrenList = new List<GameObject>();
         
+        
+        static GameObject GetParent()
+        {
+            return;
+        }
 
-        static void GetParent()
+        static void SetParent()
         {
 
         }
+
+
 
         static void AddChild(GameObject child)
         {
@@ -35,11 +42,6 @@ namespace Project2D
             ChildrenList.Remove(child);
         }
 
-        public static void SetPosition(Vector2 PlayerPos)
-        {
-            
-        }
-
         public static Vector2 GetPosition()
         {
             Vector2 ObjectPos;
@@ -48,10 +50,21 @@ namespace Project2D
             return ObjectPos;
         }
 
+        public static void SetPosition(Vector2 PlayerPos)
+        {
+            
+        }
+
+        public void Draw()
+        {
+
+        }
+
+        
+
         public virtual void Update()
         {
 
         }
     }
-
 }
