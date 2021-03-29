@@ -14,7 +14,7 @@ static public class Renderer
 {
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
-	public static Vector2 ToVector2(this Vector2 vec)
+	public static Vector2 ToVector2(this RLVector2 vec)
 	{
 		Vector2 result;
 		result.x = vec.x;
@@ -22,19 +22,30 @@ static public class Renderer
 
 		return result;
 	}
-	
+
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
-	public static Colour ToColor(this Colour colour)
+	public static RLVector2 ToRLVector2(this Vector2 vec)
 	{
-		return new Colour(colour.GetRed(), colour.GetGreen(), colour.GetBlue(), colour.GetAlpha());
+		RLVector2 result;
+		result.x = vec.x;
+		result.y = vec.y;
+
+		return result;
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
-	public static Colour ToColour(this Colour color)
+	public static RLColor ToRLColor(this Colour colour)
 	{
-		Colour col = new Colour(0x12, 0x34, 0x56, 0x78);
+		return new RLColor(colour.GetRed(), colour.GetGreen(), colour.GetBlue(), colour.GetAlpha());
+	}
+
+	//--------------------------------------------------------------
+	//--------------------------------------------------------------
+	public static Colour ToColor(this RLColor color)
+	{
+		Colour col = new Colour(0xff, 0xff, 0xff, 0xff);
 		col.SetRed(color.r);
 		col.SetGreen(color.g);
 		col.SetBlue(color.b);
@@ -48,35 +59,35 @@ static public class Renderer
 	public static Vector2 GetMousePosition()
 	{
 		RLVector2 pos = Raylib.Raylib.GetMousePosition();
-		return pos.ToRLVector2();
+		return pos.ToVector2();
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawLine(Vector2 startPos, Vector2 endPos, float thick, Colour colour)
 	{
-		DrawLineEx(startPos.ToVector2(), endPos.ToVector2(), thick, colour.ToColour());
+		DrawLineEx(startPos.ToRLVector2(), endPos.ToRLVector2(), thick, colour.ToRLColor());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawCircle(Vector2 center, float radius, Colour colour)
 	{
-		DrawCircleV(center.ToVector2(), radius, colour.ToColour());
+		DrawCircleV(center.ToRLVector2(), radius, colour.ToRLColor());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawRectangle(Vector2 position, Vector2 size, Colour colour)
 	{
-		DrawRectangleV(position.ToVector2(), size.ToVector2(), colour.ToColour());
+		DrawRectangleV(position.ToRLVector2(), size.ToRLVector2(), colour.ToRLColor());
 	}
 
 	//--------------------------------------------------------------
 	//--------------------------------------------------------------
 	public static void DrawText(Font font, string text, Vector2 position, float fontSize, float spacing, Colour tint)
 	{
-		DrawTextEx(font, text, position.ToVector2(), fontSize, spacing, tint.ToColour());
+		DrawTextEx(font, text, position.ToRLVector2(), fontSize, spacing, tint.ToRLColor());
 	}
 
 	//--------------------------------------------------------------
@@ -104,7 +115,7 @@ static public class Renderer
 		source.height = texture.height;
 
 		//Origin to rotate around
-		Vector2 origin = new Vector2();
+		RLVector2 origin = new RLVector2();
 		origin.x = texture.width * 0.5f;
 		origin.y = texture.height * 0.5f;
 
@@ -120,9 +131,9 @@ static public class Renderer
 		float degrees = angle * 180.0f / (float)Math.PI;
 
 		//Convert our color class to a raylib colour
-		Colour Colour = new Colour(color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
+		RLColor rlColor = new RLColor(color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
 
 		//Draw texture
-		DrawTexturePro(texture, source, destination, origin, degrees, Colour);
+		DrawTexturePro(texture, source, destination, origin, degrees, rlColor);
 	}
 }
