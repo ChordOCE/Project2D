@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s211022\\Documents\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj": {}
+    "C:\\Users\\s211022\\Documents\\Project2d\\Project2D\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s211022\\Documents\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj": {
+    "C:\\Users\\s211022\\Documents\\Project2d\\Project2D\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s211022\\Documents\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj",
+        "projectUniqueName": "C:\\Users\\s211022\\Documents\\Project2d\\Project2D\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj",
         "projectName": "RaylibStarterCS",
-        "projectPath": "C:\\Users\\s211022\\Documents\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj",
+        "projectPath": "C:\\Users\\s211022\\Documents\\Project2d\\Project2D\\RaylibStarterCS\\RaylibStarterCS\\RaylibStarterCS.csproj",
         "packagesPath": "C:\\Users\\s211022\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s211022\\Documents\\RaylibStarterCS\\RaylibStarterCS\\obj\\",
+        "outputPath": "C:\\Users\\s211022\\Documents\\Project2d\\Project2D\\RaylibStarterCS\\RaylibStarterCS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\s211022\\AppData\\Roaming\\NuGet\\NuGet.Config",
