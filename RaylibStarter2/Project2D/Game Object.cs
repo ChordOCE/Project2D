@@ -27,7 +27,8 @@ namespace Project2D
         public Vector2 objMax;
         public Vector2 LastSafe;
 
-        
+        //creating all the images needed for the tank game
+        //and adding GameObject to the Collision Manager
         public GameObject(string fileName)
         {
             image = LoadImage(fileName);
@@ -45,6 +46,7 @@ namespace Project2D
             CollisionManager.AddObject(this);
         }
 
+        // function to get the x and y position of any GameObject
         public Vector2 GetPosition()
         {
             Vector2 Position;
@@ -54,6 +56,7 @@ namespace Project2D
 
         }
 
+        //allows to give objects parents so that they follow that object without movement functions
         public void SetParent(GameObject parent)
         {
             if (Parent != null)
@@ -66,20 +69,14 @@ namespace Project2D
             
         }
 
+
         public GameObject GetParent(GameObject parent)
         {
             return Parent = parent;
         }
 
-        void AddChild(GameObject child)
-        {
-            ChildrenList.Add(child);
-        }
 
-        void RemoveChild(GameObject child)
-        {
-            ChildrenList.Remove(child);
-        }
+        //allows for rotation of objects
         public void UpdateTransforms()
         {
             if (Parent != null)
@@ -93,6 +90,8 @@ namespace Project2D
             }
         }
 
+        //saves the last position that an object wasnt colliding with another object
+        //so that we can move the object back to that position
         public virtual void OnCollision()
         {
             LocalTransform.m[6] = LastSafe.x;
@@ -100,7 +99,7 @@ namespace Project2D
             UpdateTransforms();
         }
 
-
+        //function that can be used to draw all the different objects
         public void Draw()
         {
             Renderer.DrawTexture(texture, GlobalTransform, RLColor.WHITE.ToColor());
@@ -111,9 +110,9 @@ namespace Project2D
             }
         }
 
-
         public virtual void Update(float deltaTime)
         {
+            //updates the current lastsafe position to the current frame every frame
             LastSafe.x = LocalTransform.m[6];
             LastSafe.y = LocalTransform.m[7];
             foreach (GameObject child in ChildrenList)

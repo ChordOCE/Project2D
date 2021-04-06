@@ -11,6 +11,7 @@ namespace Project2D
 {
     class Turret : GameObject
     {
+        //turret position set to zero because it follows the main body of the tank
         public Turret(string fileName) : base(fileName)
         {
             LocalTransform.m[6] = 0;
@@ -18,6 +19,7 @@ namespace Project2D
             EnableCollision = false;
         }
 
+        //update function for the turret so that it can rotate
         public override void Update(float deltaTime)
         {
             float rotation = 0;
@@ -25,13 +27,11 @@ namespace Project2D
             if (IsKeyDown(KeyboardKey.KEY_Q))
             {
                 rotation = 1 * deltaTime;
-
             }
 
             if (IsKeyDown(KeyboardKey.KEY_E))
             {
                 rotation = -1 * deltaTime;
-
             }
 
             Matrix3 rotationMatrix = new Matrix3(true);

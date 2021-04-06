@@ -14,6 +14,8 @@ namespace Project2D
         Turret turret = null;
         Vector2 objectVelocity;
 
+        //setting the position that the tank will start in
+        //and rendering the turret and adding player as the parent to turret
         public Player(string fileName) : base(fileName)
         {
             LocalTransform.m[6] = 640;
@@ -22,6 +24,7 @@ namespace Project2D
             turret.SetParent(this);
         }
 
+        //update function for movement
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
@@ -29,30 +32,27 @@ namespace Project2D
             Vector2 force = new Vector2();
             float rotation = 0;
             if (IsKeyDown(KeyboardKey.KEY_W))
-            {
-                
+            {              
                 force.y = -Speed;
             }
 
             if (IsKeyDown(KeyboardKey.KEY_S))
-            {
-                
+            {  
                 force.y = +Speed;
             }
 
             if (IsKeyDown(KeyboardKey.KEY_A))
             {
-                rotation = 1 * deltaTime;
-                
+                rotation = 1 * deltaTime;               
             }
 
             if (IsKeyDown(KeyboardKey.KEY_D))
             {
-                rotation = -1 * deltaTime;
-                 
+                rotation = -1 * deltaTime;                
             }
             objectVelocity += force * deltaTime;
 
+            //tank speeds up depending on how long the key is pressed down
             Vector2 displacement;
             displacement.x = objectVelocity.x * deltaTime;
             displacement.y = objectVelocity.y * deltaTime;
@@ -65,8 +65,6 @@ namespace Project2D
             Matrix3 rotationMatrix = new Matrix3(true);
             rotationMatrix.SetRotateZ(rotation);
             LocalTransform *= rotationMatrix;
-
-
         }
         public override void OnCollision()
         {
@@ -75,7 +73,6 @@ namespace Project2D
             UpdateTransforms();
             objectVelocity.x = 0;
             objectVelocity.y = 0;
-
         }
     }
 }

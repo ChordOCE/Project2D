@@ -23,7 +23,6 @@ namespace Project2D
         private int frames;
         public float deltaTime = 0.005f;
 
-
         public Game()
         {
         }
@@ -64,8 +63,7 @@ namespace Project2D
             }
             frames++;
 
-            //Update game objects here   
-
+            //Update game objects here
             tank.Update(deltaTime);
             tank.UpdateTransforms();
             crate.Update(deltaTime);
@@ -77,7 +75,6 @@ namespace Project2D
         {
             BeginDrawing();
 
-
             ClearBackground(RLColor.WHITE);
 
 			//Draw game objects here
@@ -88,6 +85,5 @@ namespace Project2D
             crate.Draw();
             EndDrawing();
         }
-
     }
 }

@@ -8,6 +8,7 @@ namespace Project2D
 {
     class Crate : GameObject
     {
+        //crate position and adding it to collision manager
         public Crate(string fileName) : base(fileName)
         {
             LocalTransform.m[6] = 1000;
