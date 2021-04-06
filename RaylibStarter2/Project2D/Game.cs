@@ -14,6 +14,7 @@ namespace Project2D
     class Game
     {
         Player tank = null;
+        Crate crate = null;
         Stopwatch stopwatch = new Stopwatch();
         private long currentTime = 0;
         private long lastTime = 0;
@@ -40,7 +41,8 @@ namespace Project2D
             //Initialize objects here
             //image = LoadImage("../Images/aie-logo-dark.jpg");
             //texture = LoadTextureFromImage(image);
-            tank = new Player("../Images/aie-logo-dark.jpg");
+            tank = new Player("../Images/unnamed.png");
+            crate = new Crate("../Images/Crate.png");
 
         }
 
@@ -66,8 +68,9 @@ namespace Project2D
 
             tank.Update(deltaTime);
             tank.UpdateTransforms();
-
-
+            crate.Update(deltaTime);
+            crate.UpdateTransforms();
+            CollisionManager.CheckCollision();
         }
     
         public void Draw()
@@ -82,6 +85,7 @@ namespace Project2D
 
             //DrawTexture(texture, GetScreenWidth() / 2 - texture.width / 2, GetScreenHeight() / 2 - texture.height / 2, RLColor.WHITE);
             tank.Draw();
+            crate.Draw();
             EndDrawing();
         }
 

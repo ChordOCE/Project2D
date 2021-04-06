@@ -18,12 +18,13 @@ namespace Project2D
         {
             LocalTransform.m[6] = 640;
             LocalTransform.m[7] = 480;
-            turret = new Turret("../Images/DoodleBob.jpg");
+            turret = new Turret("../Images/turret.png");
             turret.SetParent(this);
         }
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
             float Speed = 100f;
             Vector2 force = new Vector2();
             float rotation = 0;
@@ -64,8 +65,17 @@ namespace Project2D
             Matrix3 rotationMatrix = new Matrix3(true);
             rotationMatrix.SetRotateZ(rotation);
             LocalTransform *= rotationMatrix;
-            base.Update(deltaTime);
+
+
         }
-        
+        public override void OnCollision()
+        {
+            LocalTransform.m[6] = LastSafe.x;
+            LocalTransform.m[7] = LastSafe.y;
+            UpdateTransforms();
+            objectVelocity.x = 0;
+            objectVelocity.y = 0;
+
+        }
     }
 }

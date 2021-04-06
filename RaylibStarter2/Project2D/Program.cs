@@ -15,7 +15,7 @@ namespace Project2D
             Game game = new Game();
 
             InitWindow(1920, 1060, "Funny EasterEgg");
-            ToggleFullscreen();
+            //ToggleFullscreen();
             game.Init();
 
             while (!WindowShouldClose())

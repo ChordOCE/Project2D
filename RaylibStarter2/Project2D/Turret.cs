@@ -15,7 +15,7 @@ namespace Project2D
         {
             LocalTransform.m[6] = 0;
             LocalTransform.m[7] = 0;
-
+            EnableCollision = false;
         }
 
         public override void Update(float deltaTime)

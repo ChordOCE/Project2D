@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MathClasses">
-      <HintPath>..\..\Math Library\Math-Lib\MathLibrary\MathLibrary\bin\Debug\netstandard2.0\MathClasses.dll</HintPath>
+      <HintPath>..\..\..\..\Math Library\Math-Lib\MathLibrary\MathLibrary\bin\Debug\netstandard2.0\MathClasses.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollisionManager.cs" />
+    <Compile Include="Crate.cs" />
     <Compile Include="Turret.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />

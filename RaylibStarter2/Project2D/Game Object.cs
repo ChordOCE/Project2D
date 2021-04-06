@@ -17,29 +17,42 @@ namespace Project2D
         protected Matrix3 GlobalTransform;
         protected Image image;
         protected Image TurretImage;
+        protected Image crate;
+        protected Texture2D crateTexture;
         protected Texture2D TurretTexture;
         protected Texture2D texture;
         protected List<GameObject> ChildrenList = new List<GameObject>();
-        //protected bool bEnabledCollision = true;
-        //protected Vector2 v2min;
-        //protected Vector2 v2Max;
+        public bool EnableCollision = true;
+        public Vector2 objMin;
+        public Vector2 objMax;
+        public Vector2 LastSafe;
 
-
-        // set parent
-        // update transform
-        // draw
-
+        
         public GameObject(string fileName)
         {
             image = LoadImage(fileName);
             texture = LoadTextureFromImage(image);
             TurretImage = LoadImage(fileName);
             TurretTexture = LoadTextureFromImage(TurretImage);
+            crate = LoadImage(fileName);
+            crateTexture = LoadTextureFromImage(crate);
             LocalTransform = new Matrix3(true);
             GlobalTransform = new Matrix3(true);
+            objMin.x = .5f * -texture.width;
+            objMin.y = .5f * -texture.height;
+            objMax.x = .5f * texture.width;
+            objMax.y = .5f * texture.height;
+            CollisionManager.AddObject(this);
         }
 
-        
+        public Vector2 GetPosition()
+        {
+            Vector2 Position;
+            Position.x = GlobalTransform.m[6];
+            Position.y = GlobalTransform.m[7];
+            return Position;
+
+        }
 
         public void SetParent(GameObject parent)
         {
@@ -67,7 +80,7 @@ namespace Project2D
         {
             ChildrenList.Remove(child);
         }
-            public void UpdateTransforms()
+        public void UpdateTransforms()
         {
             if (Parent != null)
                 GlobalTransform = Parent.GlobalTransform * LocalTransform;
@@ -79,6 +92,14 @@ namespace Project2D
                 child.UpdateTransforms();
             }
         }
+
+        public virtual void OnCollision()
+        {
+            LocalTransform.m[6] = LastSafe.x;
+            LocalTransform.m[7] = LastSafe.y;
+            UpdateTransforms();
+        }
+
 
         public void Draw()
         {
@@ -93,6 +114,8 @@ namespace Project2D
 
         public virtual void Update(float deltaTime)
         {
+            LastSafe.x = LocalTransform.m[6];
+            LastSafe.y = LocalTransform.m[7];
             foreach (GameObject child in ChildrenList)
             {
                 child.Update(deltaTime);
